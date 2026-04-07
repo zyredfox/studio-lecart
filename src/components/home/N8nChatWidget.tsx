@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { App } from "vue";
-import { applySiteTokens, siteConfig } from "../../config/site";
+import { applySiteTokens, getN8nChatWebhookUrl, isN8nChatEnabled, siteConfig } from "../../config/site";
 import { N8N_CHAT_LOAD_EVENT, subscribeN8nChatScrollTrigger } from "../../lib/n8nChatGate";
 
 function isChatPanelVisible(): boolean {
@@ -37,7 +37,7 @@ type BootState = { expandPanelOnReady: boolean };
 /** Charge createChat + CSS seulement après intention utilisateur (scroll ou action). */
 function N8nChatBoot({ expandPanelOnReady }: BootState) {
   useEffect(() => {
-    const webhookUrl = siteConfig.n8nChatWebhookUrl?.trim();
+    const webhookUrl = getN8nChatWebhookUrl();
     if (!webhookUrl) return;
 
     const mq = window.matchMedia("(max-width: 1023px)");
@@ -164,7 +164,8 @@ export function N8nChatWidget() {
   const [boot, setBoot] = useState<BootState | null>(null);
 
   useEffect(() => {
-    const webhookUrl = siteConfig.n8nChatWebhookUrl?.trim();
+    if (!isN8nChatEnabled()) return;
+    const webhookUrl = getN8nChatWebhookUrl();
     if (!webhookUrl) return;
 
     const arm = () =>
@@ -181,7 +182,7 @@ export function N8nChatWidget() {
     };
   }, []);
 
-  if (!siteConfig.n8nChatWebhookUrl?.trim()) return null;
+  if (!isN8nChatEnabled()) return null;
 
   if (!boot) {
     return (

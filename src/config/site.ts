@@ -36,10 +36,10 @@ export const siteConfig = {
    * Webhook du Chat Trigger n8n pour le widget @n8n/chat (accueil, mode test).
    * Dans n8n : ajouter l’origine du site (ex. http://localhost:5173 et l’URL de prod) dans « Allowed Origins (CORS) ».
    * Si les messages ne partent pas, essayez la même URL sans le suffixe `/chat` (selon le nœud).
-   * Laisser vide pour masquer le widget.
+   * Laisser vide pour masquer le widget (sauf si `VITE_N8N_CHAT_WEBHOOK_URL` est défini au build).
+   * Désactiver sans retirer l’URL : variable `VITE_N8N_CHAT_ENABLED=false` au build (Netlify, `.env`, etc.).
    */
-  n8nChatWebhookUrl:
-    "https://julien-lecart.app.n8n.cloud/webhook/3303635e-aaa4-4cb2-86dc-167ee38501da/chat",
+  n8nChatWebhookUrl:"",
   country: "FR",
   founderName: "Julien Lecart",
   /** Nom de famille seul (SEO « À propos », citations…) */
@@ -78,6 +78,25 @@ export const siteConfig = {
   n8nChatInitialGreeting:
     "Bonjour — je peux vous orienter sur les services de {siteName}. Une question en tête ?",
 } as const;
+
+function envDisablesN8nChat(value: string | undefined): boolean {
+  if (value === undefined || value === "") return false;
+  const v = value.trim().toLowerCase();
+  return v === "0" || v === "false" || v === "off" || v === "no";
+}
+
+/** URL webhook pour @n8n/chat : `VITE_N8N_CHAT_WEBHOOK_URL` (build) puis repli sur `siteConfig`. */
+export function getN8nChatWebhookUrl(): string {
+  const fromEnv = import.meta.env.VITE_N8N_CHAT_WEBHOOK_URL?.trim();
+  if (fromEnv) return fromEnv;
+  return String(siteConfig.n8nChatWebhookUrl ?? "").trim();
+}
+
+/** Widget affiché seulement si une URL webhook existe et que le build n’a pas `VITE_N8N_CHAT_ENABLED=false`. */
+export function isN8nChatEnabled(): boolean {
+  if (envDisablesN8nChat(import.meta.env.VITE_N8N_CHAT_ENABLED)) return false;
+  return getN8nChatWebhookUrl().length > 0;
+}
 
 /** Remplace {siteName}, {founderFirstName}, {founderName}, {founderCity}, {founderLastName} dans une chaîne. */
 export function applySiteTokens(text: string): string {

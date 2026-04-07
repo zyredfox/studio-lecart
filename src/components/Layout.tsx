@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { ContactIntentLink } from "./ContactIntentLink";
 import { N8nChatWidget } from "./home/N8nChatWidget";
-import { siteConfig } from "../config/site";
+import { isN8nChatEnabled, siteConfig } from "../config/site";
 
 const navClass = ({ isActive }: { isActive: boolean }) =>
   `sl-nav-link${isActive ? " sl-nav-link--active" : ""}`;
@@ -42,7 +42,7 @@ export function Layout() {
       <Helmet>
         <meta name="theme-color" content={siteConfig.themeColor} />
       </Helmet>
-      {siteConfig.n8nChatWebhookUrl?.trim() ? <N8nChatWidget /> : null}
+      {isN8nChatEnabled() ? <N8nChatWidget /> : null}
       <header className="sl-header">
         <div className="sl-header-inner">
           <Link to="/" className="sl-brand" onClick={closeMenu}>
