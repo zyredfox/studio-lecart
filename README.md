@@ -13,7 +13,6 @@ Site vitrine pour **Studio Lecart** : présentation des services web, forfaits, 
 ## Prérequis
 
 - [Node.js](https://nodejs.org/) (LTS recommandé, ≥ 18) 
-test
 
 ## Démarrage local
 
