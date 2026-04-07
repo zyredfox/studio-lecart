@@ -42,7 +42,7 @@ export function Home() {
               ))}
             </div>
             <h1 id="hero-title">
-              Un site <em>vivant</em> et pro — sans la complexité inutile
+              DEUX site <em>vivant</em> et pro — sans la complexité inutile
             </h1>
             <p className="sl-hero-byline">
               Moi c’est <strong>{siteConfig.founderFirstName}</strong>, {siteConfig.founderAge} ans, basé à{" "}
