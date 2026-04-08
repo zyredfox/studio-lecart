@@ -1,0 +1,5 @@
+# À garder cohérent avec siteConfig.url (src/config/site.ts) si tu changes de domaine.
+User-agent: *
+Allow: /
+
+Sitemap: https://studio-lecart.netlify.app/sitemap.xml

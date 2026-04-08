@@ -26,7 +26,7 @@ export const siteConfig = {
   /** Meta theme-color (barre d’adresse mobile, etc.) */
   themeColor: "#0d9488",
   /** URL canonique une fois déployé */
-  url: "https://example.com",
+  url: "https://studio-lecart.netlify.app/",
   email: "contact@studio-lecart.fr",
   phone: "+33600000000",
   phoneDisplay: "06 00 00 00 00",

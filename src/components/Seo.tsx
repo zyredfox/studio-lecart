@@ -10,7 +10,8 @@ type SeoProps = {
 export function Seo({ title, description }: SeoProps) {
   const fullTitle = `${title} | ${siteConfig.siteName}`;
   const { pathname } = useLocation();
-  const canonicalUrl = `${siteConfig.url}${pathname === "/" ? "" : pathname}`;
+  const baseUrl = siteConfig.url.replace(/\/+$/, "");
+  const canonicalUrl = `${baseUrl}${pathname}`;
 
   return (
     <Helmet htmlAttributes={{ lang: "fr" }}>
