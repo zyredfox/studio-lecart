@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -15,8 +15,19 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Titre initial : surchargé dans main.tsx depuis src/config/site.ts -->
-    <title>Chargement…</title>
+    <!-- Titre / meta initiaux : alignés sur Home + Seo + seoHomeDescription() (src/config/site.ts) — à mettre à jour si tu changes le nom ou le pitch. -->
+    <title>Accueil | Studio Lecart</title>
+    <meta
+      name="description"
+      content="Studio Lecart à Grenoble : Julien Lecart, ingénieur & développeur — sites vitrine sur mesure, SEO de base, IA et chatbots utiles."
+    />
+    <meta property="og:title" content="Accueil | Studio Lecart" />
+    <meta
+      property="og:description"
+      content="Studio Lecart à Grenoble : Julien Lecart, ingénieur & développeur — sites vitrine sur mesure, SEO de base, IA et chatbots utiles."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <div id="root"></div>
