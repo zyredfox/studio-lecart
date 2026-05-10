@@ -1,0 +1,2 @@
+# SPA fallback (React Router). Netlify serves real files first, then this rule.
+/*    /index.html   200

@@ -21,7 +21,7 @@ export type CaseStudy = {
 
 export const siteConfig = {
   siteName: "Studio Lecart",
-  /** Apparaît dans <title> avant hydratation et complète le nom dans les métas */
+  /** Apparaît dans <title> avant hydratation  */
   siteTagline: "Sites vitrine sur mesure & IA",
   /** Meta theme-color (barre d’adresse mobile, etc.) */
   themeColor: "#0d9488",
